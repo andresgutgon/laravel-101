@@ -12,8 +12,8 @@ new class extends Component {
 
         auth()->user()->chirps()->create($validated);
 
-        $this->reset();
         $this->dispatch('chirp-created');
+        $this->reset();
     }
 }; ?>
 
@@ -26,6 +26,6 @@ new class extends Component {
                 ></textarea>
 
         <x-input-error :messages="$errors->get('message')" class="mt-2" />
-            <x-primary-button class="mt-4">{{ __('Chirp') }}</x-primary-button>
+        <x-primary-button class="mt-4">{{ __('Chirp') }}</x-primary-button>
     </form>
 </div>
