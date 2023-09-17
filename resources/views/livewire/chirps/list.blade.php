@@ -13,6 +13,7 @@ new class extends Component {
     #[On('chirp-created')]
     #[On('chirp-updated')]
     public function getChirps(): void {
+        $this->editing = null;
         $this->chirps = Chirp::with('user')
             ->latest()
             ->get();
