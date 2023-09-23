@@ -15,18 +15,10 @@ class ChirpController extends Controller {
         return view('chirps', []);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create() {
-        //
+    public function create(): void {
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Chirp $chirp) {
-        //
+    public function show(Chirp $chirp): void {
     }
 
     /**
@@ -39,19 +31,6 @@ class ChirpController extends Controller {
     }
 
     /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Chirp $chirp): RedirectResponse {
-        $this->authorize('update', $chirp);
-
-        $validated = $request->validate(['message' => 'required|string|max:255']);
-
-        $chirp->update($validated);
-
-        return redirect(route('chirps.index'));
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request): RedirectResponse {
@@ -60,6 +39,19 @@ class ChirpController extends Controller {
         ]);
 
         $request->user()->chirps()->create($validated);
+
+        return redirect(route('chirps.index'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Chirp $chirp): RedirectResponse {
+        $this->authorize('update', $chirp);
+
+        $validated = $request->validate(['message' => 'required|string|max:255']);
+
+        $chirp->update($validated);
 
         return redirect(route('chirps.index'));
     }
