@@ -13,6 +13,5 @@
                 </div>
             </div>
         </div>
-        {{!! xdebug_info() !!}}
     </div>
 </x-app-layout>
